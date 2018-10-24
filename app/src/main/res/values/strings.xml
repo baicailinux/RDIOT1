@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">嗅觉家电</string>
+    <string name="login0">Access app lock with your fingerprint</string>
+    <string name="login1">Lightly press against the sensor to verify your fingerprint</string>
+    <string name="login2">Password login</string>
+    <string name="cp1">空气净化器</string>
+    <string name="cp2">智能风扇</string>
+    <string name="cp3">智能马桶</string>
+    <string name="cp4">智能电饭煲</string>
+    <string name="cs">测试页面</string>
+    <string name="hint">Type sth here</string>
+    <string name="send">send</string>
+</resources>

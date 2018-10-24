@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.administrator.RDIOT">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/logo"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="com.fyang21117.rdiot1.LoginActivity" />
+        <activity android:name="com.fyang21117.rdiot1.MainActivity" />
+        <activity android:name="com.fyang21117.rdiot1.testActivity" />
+        <activity android:name="com.fyang21117.rdiot1.test2Activity" />
+        <activity android:name="com.fyang21117.rdiot1.test3Activity" />
+        <activity android:name="com.fyang21117.rdiot1.test4Activity" />
+
+        <activity android:name="com.fyang21117.rdiot1.StartActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>
