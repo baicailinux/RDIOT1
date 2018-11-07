@@ -24,8 +24,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         ActionBar actionBar = getSupportActionBar();
-        if(actionBar!=null)
+        if(actionBar!=null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
+           // actionBar.setSubtitle("@string/app_name");
+            actionBar.setTitle("瑞德智能");
+        }
         Button CP1 = findViewById(R.id.cp1);
         Button CP2 = findViewById(R.id.cp2);
         Button CP3 = findViewById(R.id.cp3);

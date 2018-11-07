@@ -20,7 +20,7 @@ public class StartActivity extends AppCompatActivity{
 
         welcomeImg = findViewById(R.id.logo_start);
         AlphaAnimation alphaAnimation = new AlphaAnimation(0.3f,1.0f);
-        alphaAnimation.setDuration(2000);
+        alphaAnimation.setDuration(3000);
         welcomeImg.startAnimation(alphaAnimation);
         alphaAnimation.setAnimationListener(new AnimationImpl());
     }
@@ -29,13 +29,13 @@ public class StartActivity extends AppCompatActivity{
 
         @Override
         public void onAnimationStart(Animation animation) {
-            welcomeImg.setBackgroundResource(R.drawable.logo);
+            welcomeImg.setBackgroundResource(R.drawable.my_logo);
         }
 
         @Override
         public void onAnimationEnd(Animation animation) {
            // MainActivity.actionStart(StartActivity.this);
-           Intent intent = new Intent(StartActivity.this,MainActivity.class);
+           Intent intent = new Intent(StartActivity.this,LoginActivity.class);
             startActivity(intent);
             finish();
         }
