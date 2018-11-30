@@ -15,6 +15,7 @@
         <activity android:name="com.fyang21117.rdiot1.test2Activity" />
         <activity android:name="com.fyang21117.rdiot1.test3Activity" />
         <activity android:name="com.fyang21117.rdiot1.test4Activity" />
+        <activity android:name="com.fyang21117.rdiot1.ChartsActivity" />
 
         <activity android:name="com.fyang21117.rdiot1.StartActivity">
             <intent-filter>

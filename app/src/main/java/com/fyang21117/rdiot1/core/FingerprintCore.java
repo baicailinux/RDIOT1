@@ -27,7 +27,7 @@ public class FingerprintCore {
     private FingerprintManager.AuthenticationCallback mAuthCallback;
 
     private int mFailedTimes = 0;
-    private boolean isSupport = false;
+    private boolean isSupport ;//= false
     private Handler mHandler = new Handler(Looper.getMainLooper());
 
     /**
@@ -59,7 +59,7 @@ public class FingerprintCore {
             mCryptoObjectCreator = new CryptoObjectCreator(new CryptoObjectCreator.ICryptoObjectCreateListener() {
                 @Override
                 public void onDataPrepared(FingerprintManager.CryptoObject cryptoObject) {
-                    // startAuthenticate(cryptoObject);
+                     startAuthenticate(cryptoObject);
                     // 如果需要一开始就进行指纹识别，可以在秘钥数据创建之后就启动指纹认证
                 }
             });

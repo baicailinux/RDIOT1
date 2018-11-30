@@ -20,19 +20,20 @@ public class LoginActivity extends AppCompatActivity
     private FingerprintCore mFingerprintCore;
     private KeyguardLockScreenManager mKeyguardLockScreenManager;//指纹管理
     private Toast mToast;
-    private Handler mHandler = new Handler(Looper.getMainLooper());
+    private Handler mHandler = new Handler(Looper.getMainLooper());//主线程
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         initFingerprintCore();
         Button psw_login = findViewById(R.id.psw_login);
         Button add_fingerprint = findViewById(R.id.add_fingerprint);
-        Button use_fingerprint = findViewById(R.id.use_fingerprint);
+       // Button use_fingerprint = findViewById(R.id.use_fingerprint);
         psw_login.setOnClickListener(this);
         add_fingerprint.setOnClickListener(this);
-        use_fingerprint.setOnClickListener(this);
+        //use_fingerprint.setOnClickListener(this);
 
     }
 
@@ -40,9 +41,9 @@ public class LoginActivity extends AppCompatActivity
     public void onClick(View v) {
         final int viewId = v.getId();
         switch (viewId) {
-            case R.id.use_fingerprint:
-                startFingerprintRecognition();
-                break;
+            //case R.id.use_fingerprint:
+              //  startFingerprintRecognition();
+              //  break;
             case R.id.add_fingerprint:
                 enterSysFingerprintSettingPage();
                 break;

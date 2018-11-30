@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId())
         {
             case R.id.cp1:
-                  testActivity.actionStart(this);
+                 testActivity.actionStart(this);
                   break;
             case R.id.cp2:
                 test2Activity.actionStart(this);
