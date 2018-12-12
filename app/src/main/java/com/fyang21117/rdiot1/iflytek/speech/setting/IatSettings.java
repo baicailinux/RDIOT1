@@ -6,11 +6,8 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceActivity;
 import android.view.Window;
-
-
 import com.fyang21117.rdiot1.R;
 import com.fyang21117.rdiot1.iflytek.speech.util.SettingTextWatcher;
-
 
 /**
  * 听写设置界面

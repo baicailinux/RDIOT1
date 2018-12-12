@@ -2,10 +2,8 @@ package com.fyang21117.rdiot1.iflytek.voicedemo;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -40,6 +38,7 @@ import com.iflytek.sunflower.FlowerCollector;
 
 public class IatDemo extends Activity implements OnClickListener {
 	private static String TAG = IatDemo.class.getSimpleName();
+
 	// 语音听写对象
 	private SpeechRecognizer mIat;
 	// 语音听写UI
@@ -133,8 +132,7 @@ public class IatDemo extends Activity implements OnClickListener {
 				} else {
 					showTip(getString(R.string.text_begin));
 				}
-			}
-			break;
+			}break;
 		// 音频流识别
 		case R.id.iat_recognize_stream:
 			mResultText.setText(null);// 清空显示内容
@@ -180,8 +178,7 @@ public class IatDemo extends Activity implements OnClickListener {
 		// 上传联系人
 		case R.id.iat_upload_contacts:
 			showTip(getString(R.string.text_upload_contacts));
-			ContactManager mgr = ContactManager.createManager(IatDemo.this,
-					mContactListener);
+			ContactManager mgr = ContactManager.createManager(IatDemo.this, mContactListener);
 			mgr.asyncQueryAllContactsName();
 			break;
 		// 上传用户词表

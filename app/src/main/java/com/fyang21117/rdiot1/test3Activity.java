@@ -32,6 +32,7 @@ import com.fyang21117.rdiot1.iflytek.voicedemo.IseDemo;
 import com.fyang21117.rdiot1.iflytek.voicedemo.TtsDemo;
 import com.fyang21117.rdiot1.iflytek.voicedemo.faceonline.OnlineFaceDemo;
 import com.fyang21117.rdiot1.iflytek.voicedemo.vocalverify.VocalVerifyDemo;
+import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechUtility;
 import com.iflytek.sunflower.FlowerCollector;
 
@@ -55,6 +56,11 @@ import static com.fyang21117.rdiot1.iflytek.speech.setting.UrlSettings.PREFER_NA
             requestWindowFeature(Window.FEATURE_NO_TITLE);
             setContentView(R.layout.main);
 
+            // 将“12345678”替换成您申请的APPID，申请地址：http://www.xfyun.cn
+            // 请勿在“=”与appid之间添加任何空字符或者转义符
+            SpeechUtility.createUtility(this, SpeechConstant.APPID +"=5c0881d0");
+
+
 /*            ActionBar actionBar = getActionBar();
             if(actionBar!=null)
                 actionBar.setDisplayHomeAsUpEnabled(true);*/
@@ -72,7 +78,7 @@ import static com.fyang21117.rdiot1.iflytek.speech.setting.UrlSettings.PREFER_NA
             ((ListView) findViewById(R.id.listview_main)).setAdapter(listitemAdapter);
         }
 
-        @Override
+/*        @Override
         public boolean onOptionsItemSelected(MenuItem item) {
             switch (item.getItemId()) {
                 case android.R.id.home: {
@@ -80,7 +86,7 @@ import static com.fyang21117.rdiot1.iflytek.speech.setting.UrlSettings.PREFER_NA
                 }break;
                 default :break;
             }return super.onOptionsItemSelected(item);
-        }
+        }*/
         @Override
         public void onClick(View view) {
             int tag = Integer.parseInt(view.getTag().toString());
