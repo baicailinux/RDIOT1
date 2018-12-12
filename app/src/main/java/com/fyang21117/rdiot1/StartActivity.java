@@ -7,8 +7,6 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 
-import com.example.administrator.RDIOT.R;
-
 public class StartActivity extends AppCompatActivity{
 
     private ImageView welcomeImg=null;

@@ -9,11 +9,9 @@ import com.fyang21117.rdiot1.view.common.DensityUtil;
 /*
  * @ClassName DemoView
  * @Description  各个例子view的view基类
- * @author XiongChuanLiang<br/>(xcl_168@aliyun.com)
  */
 public class DemoView extends ChartView{
 
-	
 	public DemoView(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
@@ -34,10 +32,10 @@ public class DemoView extends ChartView{
 	protected int[] getBarLnDefaultSpadding()
 	{
 		int [] ltrb = new int[4];
-		ltrb[0] = DensityUtil.dip2px(getContext(), 40); //left	
-		ltrb[1] = DensityUtil.dip2px(getContext(), 60); //top	
-		ltrb[2] = DensityUtil.dip2px(getContext(), 20); //right	
-		ltrb[3] = DensityUtil.dip2px(getContext(), 40); //bottom						
+		ltrb[0] = DensityUtil.dip2px(getContext(), 30); //left
+		ltrb[1] = DensityUtil.dip2px(getContext(), 50); //top
+		ltrb[2] = DensityUtil.dip2px(getContext(), 10); //right
+		ltrb[3] = DensityUtil.dip2px(getContext(), 30); //bottom
 		return ltrb;
 	}
 	

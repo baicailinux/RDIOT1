@@ -16,7 +16,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
-import com.example.administrator.RDIOT.R;
+
 import com.fyang21117.rdiot1.view.DemoView;
 import com.fyang21117.rdiot1.view.LineChart01View;
 import com.fyang21117.rdiot1.view.SplineChart03View;
@@ -83,11 +83,11 @@ public class ChartsActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         //设置铺满屏幕
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         //设置没标题
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		//设置横屏
@@ -148,7 +148,7 @@ public class ChartsActivity extends Activity {
 		   mZoomControls.setLayoutParams(frameParm);  
 		   */
 		   
-		   //图表显示范围在占屏幕大小的90%的区域内
+		   //图表显示范围在占屏幕大小的99%的区域内
 		   DisplayMetrics dm = getResources().getDisplayMetrics();		   
 		   int scrWidth = (int) (dm.widthPixels * 0.99);
 		   int scrHeight = (int) (dm.heightPixels * 0.99);

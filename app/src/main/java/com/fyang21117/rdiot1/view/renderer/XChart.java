@@ -4,8 +4,7 @@ package com.fyang21117.rdiot1.view.renderer;
 /*
  * @ClassName XChart
  * @Description 所有图表类的基类,定义了图表区，标题，背景等
- * @author XiongChuanLiang<br/>(xcl_168@aliyun.com)
- * 
+ *
  */
 
 import android.graphics.Canvas;

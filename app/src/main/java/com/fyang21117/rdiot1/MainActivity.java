@@ -9,7 +9,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import com.example.administrator.RDIOT.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     public static void actionStart(Context context) {
@@ -22,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         ActionBar actionBar = getSupportActionBar();
         if(actionBar!=null) {

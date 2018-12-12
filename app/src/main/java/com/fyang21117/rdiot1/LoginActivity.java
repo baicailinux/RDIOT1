@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.administrator.RDIOT.R;
 import com.fyang21117.rdiot1.core.FingerprintCore;
 
 public class LoginActivity extends AppCompatActivity

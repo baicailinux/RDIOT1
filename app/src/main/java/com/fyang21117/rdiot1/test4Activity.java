@@ -8,8 +8,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.example.administrator.RDIOT.R;
-
 public class test4Activity extends AppCompatActivity {
     public static void actionStart(Context context) {
         Intent intent = new Intent(context,test4Activity.class);

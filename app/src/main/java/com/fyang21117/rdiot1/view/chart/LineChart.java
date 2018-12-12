@@ -24,10 +24,8 @@ public class LineChart extends LnChart{
 	
 	//数据源
 	protected List<LineData> mDataSet;
-	
 	//当线与轴交叉时是否不断开连接
 	private boolean mLineAxisIntersectVisible = true;
-	
 	//图例
 	private List<LnData> mLstKey = new ArrayList<>();
 								
@@ -46,8 +44,7 @@ public class LineChart extends LnChart{
 		 * 分类轴的数据源
 		 * @param categories 标签集
 		 */
-		public void setCategories( List<String> categories)
-		{
+		public void setCategories( List<String> categories) {
 			if(null != categoryAxis)categoryAxis.setDataBuilding(categories);
 		}
 		
@@ -268,9 +265,9 @@ public class LineChart extends LnChart{
 			for(int i=0;i<count;i++)
 			{								
 				if(!renderLine(canvas,mDataSet.get(i),"LINE",i))
-					return false;;
+					return false;
 				if(!renderLine(canvas,mDataSet.get(i),"DOT2LABEL",i))
-					return false;;
+					return false;
 				key = mDataSet.get(i).getLineKey();				
 				if("" != key && key.length() > 0)
 					mLstKey.add(mDataSet.get(i));
@@ -279,12 +276,10 @@ public class LineChart extends LnChart{
 			return true;
 		}	
 
-		/////////////////////////////////////////////
-				
 		@Override
 		protected void drawClipPlot(Canvas canvas)
 		{
-			if(renderVerticalPlot(canvas) == true)
+			if(renderVerticalPlot(canvas))
 			{				
 				if(null != mCustomLine) //画横向定制线
 				{
@@ -301,6 +296,4 @@ public class LineChart extends LnChart{
 			plotLegend.renderLineKey(canvas, mLstKey);
 			mLstKey.clear();
 		}
-		/////////////////////////////////////////////
-
 }

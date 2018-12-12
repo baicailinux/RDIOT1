@@ -21,7 +21,6 @@ import android.view.View;
 /*
  * @ClassName ChartView
  * @Description  含手势操作的XCL-Charts图表View基类
- * @author XiongChuanLiang<br/>(xcl_168@aliyun.com) QQ群: 374780627
  */
 public abstract class ChartView extends GraphicalView {
 
