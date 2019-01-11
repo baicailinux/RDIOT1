@@ -62,6 +62,10 @@
             android:name="com.fyang21117.rdiot1.iflytek.voicedemo.IseDemo"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.fyang21117.rdiot1.iflytek.voicedemo.YyDemo"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="com.fyang21117.rdiot1.iflytek.voicedemo.vocalverify.VocalVerifyDemo"
@@ -125,7 +129,9 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <!--如需使用人脸识别，还要添加：摄相头权限，拍照需要用到 -->
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
-
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
 </manifest>

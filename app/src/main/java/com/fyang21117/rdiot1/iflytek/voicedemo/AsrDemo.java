@@ -102,7 +102,7 @@ public class AsrDemo extends Activity implements OnClickListener{
 				((EditText)findViewById(R.id.isr_text)).setText(mCloudGrammar);
 				mContent = new String(mCloudGrammar);
 				//指定引擎类型
-				mAsr.setParameter(SpeechConstant.ENGINE_TYPE, mEngineType);
+				mAsr.setParameter(SpeechConstant.ENGINE_TYPE, mEngineType);//TYPE_CLOUD在线模式，TYPE_LOCAL本地模式
 				mAsr.setParameter(SpeechConstant.TEXT_ENCODING,"utf-8");
 				ret = mAsr.buildGrammar(GRAMMAR_TYPE_ABNF, mContent, mCloudGrammarListener);
 				if(ret != ErrorCode.SUCCESS)
@@ -116,13 +116,13 @@ public class AsrDemo extends Activity implements OnClickListener{
 				if (!setParam()) {
 					showTip("请先构建语法。");
 					return;
-				};
+				}
 				
 				ret = mAsr.startListening(mRecognizerListener);
 				if (ret != ErrorCode.SUCCESS) {
 					showTip("识别失败,错误码: " + ret);
-				}
-				break;
+				}break;
+
 			// 停止识别
 			case R.id.isr_stop:
 				mAsr.stopListening();
@@ -140,7 +140,6 @@ public class AsrDemo extends Activity implements OnClickListener{
      * 初始化监听器。
      */
     private InitListener mInitListener = new InitListener() {
-
 		@Override
 		public void onInit(int code) {
 			Log.d(TAG, "SpeechRecognizer init() code = " + code);
@@ -256,6 +255,7 @@ public class AsrDemo extends Activity implements OnClickListener{
 	/*
 	 * 参数设置
 	 * @return
+	 * 参考https://doc.xfyun.cn/msc_android/%E8%AF%AD%E6%B3%95%E8%AF%86%E5%88%AB.html
 	 */
 	public boolean setParam(){
 		boolean result = false;

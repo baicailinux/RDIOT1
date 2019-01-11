@@ -2,14 +2,11 @@ package com.fyang21117.rdiot1.iflytek.speech.util;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import com.iflytek.cloud.ErrorCode;
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechUtility;
-
 import android.content.Context;
 
 /**
@@ -26,10 +23,10 @@ public class FucUtil {
 		byte []buf = null;
 		String result = "";
 		try {
-			InputStream in = mContext.getAssets().open(file);			
-			len  = in.available();
-			buf = new byte[len];
-			in.read(buf, 0, len);
+			InputStream in = mContext.getAssets().open(file);//输入流
+			len  = in.available();//返回字节数
+			buf = new byte[len];//缓冲区
+			in.read(buf, 0, len);//输入字节流读取到缓冲区
 			
 			result = new String(buf,code);
 		} catch (Exception e) {

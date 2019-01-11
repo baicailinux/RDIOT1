@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         ActionBar actionBar = getSupportActionBar();
         if(actionBar!=null) {
             actionBar.setDisplayHomeAsUpEnabled(true);

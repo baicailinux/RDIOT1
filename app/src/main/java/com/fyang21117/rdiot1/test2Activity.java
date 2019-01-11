@@ -67,8 +67,6 @@ public class test2Activity extends AppCompatActivity implements View.OnClickList
      * Item排序
      */
     private void sortCPViewItem() {
-
-        String string;
         //获取LinearLayout里面所有的view
         for (int i = 0; i < addCPNameItem.getChildCount(); i++) {
             final View childAt = addCPNameItem.getChildAt(i);
@@ -87,7 +85,7 @@ public class test2Activity extends AppCompatActivity implements View.OnClickList
                 btn_add.setText("+新增");
                 btn_add.setTag("add");
                 t2 = findViewById(R.id.cp_name);
-               t1 = findViewById(R.id.cp_num);
+                t1 = findViewById(R.id.cp_num);
                 t1.setText(String.valueOf(addCPNameItem.getChildCount()));
                 t2.setText("设备:"+ String.valueOf(addCPNameItem.getChildCount()));
 
@@ -105,12 +103,12 @@ public class test2Activity extends AppCompatActivity implements View.OnClickList
             btn_add.setTag("add");
             btn_add.setOnClickListener(this);
             addCPNameItem.addView(cpEvaluateView);
-            //sortCPViewItem();
-        } else if (( view.getTag()).equals("add")) {//如果有一个以上的Item,点击为添加的Item则添加
+            sortCPViewItem();
+        } else if (( view.getTag()).equals("add")) {
+            //如果有一个以上的Item,点击为添加的Item则添加
             View cpEvaluateView = View.inflate(this, R.layout.item_add, null);
             addCPNameItem.addView(cpEvaluateView);
             sortCPViewItem();
         }
     }
 }
-

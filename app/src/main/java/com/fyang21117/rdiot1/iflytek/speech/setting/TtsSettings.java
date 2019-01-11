@@ -11,17 +11,15 @@ import android.view.Window;
 import com.fyang21117.rdiot1.R;
 import com.fyang21117.rdiot1.iflytek.speech.util.SettingTextWatcher;
 
-
-
 /**
  * 合成设置界面
  */
 public class TtsSettings extends PreferenceActivity implements OnPreferenceChangeListener {
 	
 	public static final String PREFER_NAME = "com.iflytek.setting";
-	private EditTextPreference mSpeedPreference;
-	private EditTextPreference mPitchPreference;
-	private EditTextPreference mVolumePreference;
+	EditTextPreference mSpeedPreference;
+	EditTextPreference mPitchPreference;
+	EditTextPreference mVolumePreference;
 	
 	@SuppressWarnings("deprecation")
 	@Override

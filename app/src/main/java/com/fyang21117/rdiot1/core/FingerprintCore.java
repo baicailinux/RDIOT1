@@ -27,7 +27,7 @@ public class FingerprintCore {
     private FingerprintManager.AuthenticationCallback mAuthCallback;
 
     private int mFailedTimes = 0;
-    private boolean isSupport ;//= false
+    private boolean isSupport = true;//
     private Handler mHandler = new Handler(Looper.getMainLooper());
 
     /**
@@ -219,7 +219,7 @@ public class FingerprintCore {
         } catch (Throwable e) {
             e.printStackTrace();
         }
-        return false;
+        return true;//返回设备支持指纹解锁。
     }
 
     /**

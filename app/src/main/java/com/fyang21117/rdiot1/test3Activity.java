@@ -30,6 +30,7 @@ import com.fyang21117.rdiot1.iflytek.voicedemo.AsrDemo;
 import com.fyang21117.rdiot1.iflytek.voicedemo.IatDemo;
 import com.fyang21117.rdiot1.iflytek.voicedemo.IseDemo;
 import com.fyang21117.rdiot1.iflytek.voicedemo.TtsDemo;
+import com.fyang21117.rdiot1.iflytek.voicedemo.YyDemo;
 import com.fyang21117.rdiot1.iflytek.voicedemo.faceonline.OnlineFaceDemo;
 import com.fyang21117.rdiot1.iflytek.voicedemo.vocalverify.VocalVerifyDemo;
 import com.iflytek.cloud.SpeechConstant;
@@ -101,8 +102,8 @@ import static com.fyang21117.rdiot1.iflytek.speech.setting.UrlSettings.PREFER_NA
                     intent = new Intent(test3Activity.this, AsrDemo.class);
                     break;
                 case 2:
-                    // 语义理解
-                    showTip("请登录：http://www.xfyun.cn/ 下载aiui体验吧！");
+                    // 语音助手
+                    intent = new Intent(test3Activity.this, YyDemo.class);
                     break;
                 case 3:
                     // 语音合成
@@ -137,7 +138,7 @@ import static com.fyang21117.rdiot1.iflytek.speech.setting.UrlSettings.PREFER_NA
         }
 
         // Menu 列表
-        String items[] = { "立刻体验语音听写", "立刻体验语法识别", "立刻体验语义理解", "立刻体验语音合成",
+        String items[] = { "立刻体验语音听写", "立刻体验语法识别", "立刻体验语音助手", "立刻体验语音合成",
                 "立刻体验语音评测", "立刻体验语音唤醒", "立刻体验声纹密码","立刻体验人脸识别"/*,"重置域名"*/ };
 
         private class SimpleAdapter extends BaseAdapter {

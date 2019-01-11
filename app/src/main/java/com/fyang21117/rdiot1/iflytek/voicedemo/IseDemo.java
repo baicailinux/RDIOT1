@@ -54,7 +54,6 @@ public class IseDemo extends Activity implements OnClickListener {
 	
 	// 评测监听接口
 	private EvaluatorListener mEvaluatorListener = new EvaluatorListener() {
-		
 		@Override
 		public void onResult(EvaluatorResult result, boolean isLast) {
 			Log.d(TAG, "evaluator result :" + isLast);
@@ -134,7 +133,8 @@ public class IseDemo extends Activity implements OnClickListener {
 		findViewById(R.id.ise_parse).setOnClickListener(IseDemo.this);
 		findViewById(R.id.ise_stop).setOnClickListener(IseDemo.this);
 		findViewById(R.id.ise_cancel).setOnClickListener(IseDemo.this);
-				
+
+		//这样是初始化吗？
 		mToast = Toast.makeText(IseDemo.this, "", Toast.LENGTH_LONG);
 	}
 	

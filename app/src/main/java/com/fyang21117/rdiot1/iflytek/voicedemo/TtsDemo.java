@@ -34,13 +34,12 @@ import com.fyang21117.rdiot1.iflytek.speech.setting.TtsSettings;
 import com.iflytek.sunflower.FlowerCollector;
 
 public class TtsDemo extends Activity implements OnClickListener {
-	private static String TAG = TtsDemo.class.getSimpleName(); 	
+	private static String TAG = TtsDemo.class.getSimpleName();
+
 	// 语音合成对象
 	private SpeechSynthesizer mTts;
-
 	// 默认发音人
-	private String voicer = "xiaoyan";
-	
+	private String voicer = "vixy";
 	private String[] mCloudVoicersEntries;
 	private String[] mCloudVoicersValue ;
 	String texts = "";
@@ -63,8 +62,10 @@ public class TtsDemo extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.ttsdemo);
+		//texts是文本源
 		texts = getResources().getString(R.string.text_tts_source);
 		initLayout();
+
 		// 初始化合成对象
 		mTts = SpeechSynthesizer.createSynthesizer(TtsDemo.this, mTtsInitListener);
 		
@@ -120,16 +121,18 @@ public class TtsDemo extends Activity implements OnClickListener {
 				startActivity(intent);
 			}else{
 				showTip("请前往xfyun.cn下载离线合成体验");
-			}
-			break;
+			}break;
+
 		// 开始合成
 		// 收到onCompleted 回调时，合成结束、生成合成音频
         // 合成的音频格式：只支持pcm格式
 		case R.id.tts_play:
 			// 移动数据分析，收集开始合成事件
 			FlowerCollector.onEvent(TtsDemo.this, "tts_play");
-			
+
+			//设置文本源，进行合成。
 			String text = ((EditText) findViewById(R.id.tts_text)).getText().toString();
+
 			// 设置参数
 			setParam();
 			int code = mTts.startSpeaking(text, mTtsListener);
@@ -283,7 +286,7 @@ public class TtsDemo extends Activity implements OnClickListener {
 		mToast.show();
 	}
 
-	/**
+	/*
 	 * 参数设置
 	 * @return
 	 */

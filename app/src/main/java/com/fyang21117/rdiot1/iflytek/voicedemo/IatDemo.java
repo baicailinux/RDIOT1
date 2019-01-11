@@ -19,6 +19,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.fyang21117.rdiot1.R;
+import com.fyang21117.rdiot1.test2Activity;
+import com.fyang21117.rdiot1.testActivity;
 import com.iflytek.cloud.ErrorCode;
 import com.iflytek.cloud.InitListener;
 import com.iflytek.cloud.LexiconListener;
@@ -45,14 +47,12 @@ public class IatDemo extends Activity implements OnClickListener {
 	private RecognizerDialog mIatDialog;
 	// 用HashMap存储听写结果
 	private HashMap<String, String> mIatResults = new LinkedHashMap<>();
-
 	private EditText mResultText;
 	private EditText showContacts;
 	private Toast mToast;
 	private SharedPreferences mSharedPreferences;
 	// 引擎类型
-	private String mEngineType = SpeechConstant.TYPE_CLOUD;
-
+	String mEngineType = SpeechConstant.TYPE_CLOUD;
 	private boolean mTranslateEnable = false;
 	
 
@@ -70,9 +70,7 @@ public class IatDemo extends Activity implements OnClickListener {
 		// 初始化听写Dialog，如果只使用有UI听写功能，无需创建SpeechRecognizer
 		// 使用UI听写功能，请根据sdk文件目录下的notice.txt,放置布局文件和图片资源
 		mIatDialog = new RecognizerDialog(IatDemo.this, mInitListener);
-
-		mSharedPreferences = getSharedPreferences(IatSettings.PREFER_NAME,
-				Activity.MODE_PRIVATE);
+		mSharedPreferences = getSharedPreferences(IatSettings.PREFER_NAME, Activity.MODE_PRIVATE);
 		mToast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
 		mResultText = (findViewById(R.id.iat_text));
 		showContacts =  findViewById(R.id.iat_contacts);
@@ -107,6 +105,7 @@ public class IatDemo extends Activity implements OnClickListener {
 			Intent intents = new Intent(IatDemo.this, IatSettings.class);
 			startActivity(intents);
 			break;
+
 		// 开始听写
 		// 如何判断一次听写结束：OnResult isLast=true 或者 onError
 		case R.id.iat_recognize:
@@ -126,6 +125,15 @@ public class IatDemo extends Activity implements OnClickListener {
 				showTip(getString(R.string.text_begin));
 			} else {
 				// 不显示听写对话框
+                /*
+                 *调用startListening函数开始识别后，通过SDK的录音机录取用户通过麦克风读入的音频
+                 * （当 SpeechConstant.AUDIO_SOURCE 值>=0时），
+                 * 或由应用层调用 writeAudio(byte[], int, int)写入音频流，
+                 * 获取用于识别的音频。在完成音频 录入（包括麦克风或写音频流方式）后，
+                 * 通过调用stopListening()告知SDK已完 成音频录入，
+                 * 或由SDK自带的VAD（Voice Activity Detection,静音抑制）自动结束音频录 入，
+                 * 见RecognizerListener.onEndOfSpeech()。
+                 * */
 				ret = mIat.startListening(mRecognizerListener);
 				if (ret != ErrorCode.SUCCESS) {
 					showTip("听写失败,错误码：" + ret);
@@ -184,16 +192,16 @@ public class IatDemo extends Activity implements OnClickListener {
 		// 上传用户词表
 		case R.id.iat_upload_userwords:
 			showTip(getString(R.string.text_upload_userwords));
-			String contents = FucUtil.readFile(IatDemo.this, "userwords","utf-8");
-			showContacts.setText(contents);
+            String contents = FucUtil.readFile(IatDemo.this, "userwords","utf-8");
+            showContacts.setText(contents);
 
-			// 指定引擎类型
-			mIat.setParameter(SpeechConstant.ENGINE_TYPE, SpeechConstant.TYPE_CLOUD);
-			mIat.setParameter(SpeechConstant.TEXT_ENCODING, "utf-8");
-			ret = mIat.updateLexicon("userword", contents, mLexiconListener);
-			if (ret != ErrorCode.SUCCESS)
-				showTip("上传热词失败,错误码：" + ret);
-			break;
+            // 指定引擎类型
+            mIat.setParameter(SpeechConstant.ENGINE_TYPE, SpeechConstant.TYPE_CLOUD);
+            mIat.setParameter(SpeechConstant.TEXT_ENCODING, "utf-8");
+            ret = mIat.updateLexicon("userword", contents, mLexiconListener);
+            if (ret != ErrorCode.SUCCESS)
+                showTip("上传热词失败,错误码：" + ret);
+            break;
 		default:
 			break;
 		}
@@ -201,9 +209,9 @@ public class IatDemo extends Activity implements OnClickListener {
 
 	/**
 	 * 初始化监听器。
+     * 初始化单例对象时，通过此回调接口，获取初始化状态。
 	 */
 	private InitListener mInitListener = new InitListener() {
-
 		@Override
 		public void onInit(int code) {
 			Log.d(TAG, "SpeechRecognizer init() code = " + code);
@@ -217,7 +225,6 @@ public class IatDemo extends Activity implements OnClickListener {
 	 * 上传联系人/词表监听器。
 	 */
 	private LexiconListener mLexiconListener = new LexiconListener() {
-
 		@Override
 		public void onLexiconUpdated(String lexiconId, SpeechError error) {
 			if (error != null) {
@@ -230,6 +237,7 @@ public class IatDemo extends Activity implements OnClickListener {
 
 	/**
 	 * 听写监听器。
+     *通过实现此接口，获取当前识别的状态和结果
 	 */
 	private RecognizerListener mRecognizerListener = new RecognizerListener() {
 
@@ -305,13 +313,13 @@ public class IatDemo extends Activity implements OnClickListener {
 		for (String key : mIatResults.keySet()) {
 			resultBuffer.append(mIatResults.get(key));
 		}
-
 		mResultText.setText(resultBuffer.toString());
 		mResultText.setSelection(mResultText.length());
 	}
 
 	/**
 	 * 听写UI监听器
+     * 通过实现此接口，获取识别对话框识别过程的结果和错误信息。
 	 */
 	private RecognizerDialogListener mRecognizerDialogListener = new RecognizerDialogListener() {
 		public void onResult(RecognizerResult results, boolean isLast) {
@@ -414,10 +422,10 @@ public class IatDemo extends Activity implements OnClickListener {
 		//此处用于设置dialog中不显示错误码信息
 		//mIat.setParameter("view_tips_plain","false");
 
-		// 设置语音前端点:静音超时时间，即用户多长时间不说话则当做超时处理
+		// 设置语音前端点:静音超时时间4s，即用户多长时间不说话则当做超时处理
 		mIat.setParameter(SpeechConstant.VAD_BOS, mSharedPreferences.getString("iat_vadbos_preference", "4000"));
 		
-		// 设置语音后端点:后端点静音检测时间，即用户停止说话多长时间内即认为不再输入， 自动停止录音
+		// 设置语音后端点:后端点静音检测时间1s，即用户停止说话多长时间内即认为不再输入， 自动停止录音
 		mIat.setParameter(SpeechConstant.VAD_EOS, mSharedPreferences.getString("iat_vadeos_preference", "1000"));
 		
 		// 设置标点符号,设置为"0"返回结果无标点,设置为"1"返回结果有标点

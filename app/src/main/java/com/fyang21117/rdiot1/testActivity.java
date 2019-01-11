@@ -1,5 +1,4 @@
 package com.fyang21117.rdiot1;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -25,7 +24,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-
 
 public class testActivity extends AppCompatActivity {
     public static void actionStart(Context context) {

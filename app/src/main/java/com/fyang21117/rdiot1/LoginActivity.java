@@ -7,14 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fyang21117.rdiot1.core.FingerprintCore;
 
-public class LoginActivity extends AppCompatActivity
-    implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private FingerprintCore mFingerprintCore;
     private KeyguardLockScreenManager mKeyguardLockScreenManager;//指纹管理
@@ -29,20 +26,19 @@ public class LoginActivity extends AppCompatActivity
         initFingerprintCore();
         Button psw_login = findViewById(R.id.psw_login);
         Button add_fingerprint = findViewById(R.id.add_fingerprint);
-       // Button use_fingerprint = findViewById(R.id.use_fingerprint);
+        Button use_fingerprint = findViewById(R.id.use_fingerprint);
         psw_login.setOnClickListener(this);
         add_fingerprint.setOnClickListener(this);
-        //use_fingerprint.setOnClickListener(this);
-
+        use_fingerprint.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         final int viewId = v.getId();
         switch (viewId) {
-            //case R.id.use_fingerprint:
-              //  startFingerprintRecognition();
-              //  break;
+            case R.id.use_fingerprint:
+                startFingerprintRecognition();
+               break;
             case R.id.add_fingerprint:
                 enterSysFingerprintSettingPage();
                 break;
@@ -75,9 +71,7 @@ public class LoginActivity extends AppCompatActivity
         mKeyguardLockScreenManager.showAuthenticationScreen(this);
     }
 
-    /**0
-     * 开始指纹识别
-     */
+    /*** 开始指纹识别*/
     private void startFingerprintRecognition() {
         if (mFingerprintCore.isSupport()) {
             if (!mFingerprintCore.isHasEnrolledFingerprints()) {
@@ -101,7 +95,8 @@ public class LoginActivity extends AppCompatActivity
         MainActivity.actionStart(this);//识别成功
     }
 
-    private FingerprintCore.IFingerprintResultListener mResultListener = new FingerprintCore.IFingerprintResultListener() {
+    private FingerprintCore.IFingerprintResultListener mResultListener
+            = new FingerprintCore.IFingerprintResultListener() {
         @Override
         public void onAuthenticateSuccess() {
             toastTipMsg(R.string.fingerprint_recognition_success);
