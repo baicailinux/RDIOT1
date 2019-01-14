@@ -23,11 +23,10 @@ public class test4Activity extends AppCompatActivity implements View.OnClickList
     }
 
     static TextView test4Text;
-
     public  static String buffer[]=new String[]{"古诗词赏析","床前明月光","疑是地上霜","举头望明月","低头思故乡"};
-
     public  static final  int UPDATE = 1;
-    public static  int i=0;
+    public static  int i=1;
+
     //将 Handler 声明为静态内部类。并持有外部类的弱引用
     private static class MyHandler extends Handler{
         private final WeakReference<test4Activity> mActivity;
@@ -43,7 +42,7 @@ public class test4Activity extends AppCompatActivity implements View.OnClickList
                         test4Text.setText(buffer[i]);
                         i++;
                         if(i==5)
-                            i=0;
+                            i=1;
                     break;
                 default:break;
             }
@@ -68,7 +67,6 @@ public class test4Activity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ChangeText:
-                Toast.makeText(this,"next",Toast.LENGTH_SHORT).show();
                 new Thread(new Runnable() {
                 @Override
                 public void run() {

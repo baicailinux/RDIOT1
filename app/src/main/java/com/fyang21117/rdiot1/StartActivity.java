@@ -27,7 +27,7 @@ public class StartActivity extends AppCompatActivity{
 
         @Override
         public void onAnimationStart(Animation animation) {
-            welcomeImg.setBackgroundResource(R.drawable.my_logo);
+            welcomeImg.setBackgroundResource(R.drawable.logo);
         }
 
         @Override
