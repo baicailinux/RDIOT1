@@ -2,16 +2,10 @@ package com.fyang21117.rdiot1.iflytek.voicedemo;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.ActivityManager;
-import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Looper;
-import android.provider.MediaStore;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -19,19 +13,12 @@ import android.text.style.BackgroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.fyang21117.rdiot1.FingerprintUtil;
 import com.fyang21117.rdiot1.R;
 import com.fyang21117.rdiot1.iflytek.speech.setting.IatSettings;
 import com.fyang21117.rdiot1.iflytek.speech.util.FucUtil;
 import com.fyang21117.rdiot1.iflytek.speech.util.JsonParser;
-import com.fyang21117.rdiot1.test2Activity;
-import com.fyang21117.rdiot1.test3Activity;
-import com.fyang21117.rdiot1.test4Activity;
-import com.fyang21117.rdiot1.testActivity;
 import com.iflytek.cloud.ErrorCode;
 import com.iflytek.cloud.InitListener;
 import com.iflytek.cloud.LexiconListener;
@@ -50,8 +37,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class YyDemo extends Activity  implements View.OnClickListener{
     private static String TAG = YyDemo.class.getSimpleName();
@@ -78,8 +63,6 @@ public class YyDemo extends Activity  implements View.OnClickListener{
     private int mPercentForPlaying = 0;
     private int mVolume = 0;
 
-    //定义按钮按下标志
-    private boolean isClicked = false;
     StringBuffer resultBuffer = new StringBuffer();
     String cmd = resultBuffer.toString();
     String words[]=new String[]{
@@ -102,7 +85,7 @@ public class YyDemo extends Activity  implements View.OnClickListener{
         texts = getResources().getString(R.string.text_tts_source);
         initLayout();
 
-        // 初始化识别无UI识别对
+        // 初始化识别无UI识别对象
         mYy = SpeechRecognizer.createRecognizer(YyDemo.this, mInitListener);
         // 初始化合成对象
         mTts = SpeechSynthesizer.createSynthesizer(YyDemo.this, mTtsInitListener);
@@ -137,10 +120,10 @@ public class YyDemo extends Activity  implements View.OnClickListener{
         switch (view.getId()) {
             // 开始听写
             case R.id.yy_start: {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        FlowerCollector.onEvent(YyDemo.this, "yy_start");
+               // new Thread(new Runnable() { @Override
+                //                    public void run() {}}).start();
+
+                        FlowerCollector.onEvent(YyDemo.this, "iat_recognize");
                         mResultText.setText(null);// 清空显示内容
                         mYyResults.clear();
                         ret = mYy.startListening(mRecognizerListener);
@@ -148,13 +131,13 @@ public class YyDemo extends Activity  implements View.OnClickListener{
                             showTip("听写失败,错误码：" + ret);
                         else
                             showTip(getString(R.string.text_begin));
-                    }
-                }).start();
+
+
             }break;
 
             case R.id.yy_answer:
                 // 移动数据分析，收集开始合成事件
-                FlowerCollector.onEvent(YyDemo.this, "yy_answer");
+                FlowerCollector.onEvent(YyDemo.this, "tts_play");
                 //设置文本源，进行合成。加个模糊算法判断关键词，作出回复
                 String text = ((EditText) findViewById(R.id.yy_text)).getText().toString();
                 int code = mTts.startSpeaking(text, mTtsListener);
@@ -228,12 +211,10 @@ public class YyDemo extends Activity  implements View.OnClickListener{
             }
             // 如何判断一次听写结束：OnResult isLast=true 或者 onError
             if (isLast) {
-                // 听写结束，开始回应
-                // 移动数据分析，收集开始合成事件
-                FlowerCollector.onEvent(YyDemo.this, "yy_answer");
-                //设置文本源，进行合成。加个模糊算法判断关键词，作出回复
+                FlowerCollector.onEvent(YyDemo.this, "iat_recognize");
                 String text_speak = ((EditText) findViewById(R.id.yy_text)).getText().toString();
-                int code=0;
+                int code;
+
                if (text_speak.equals(words[0])||text_speak.equals(words[1])||text_speak.equals(words[2]))
                     code = mTts.startSpeaking("空净已打开，have a good day", mTtsListener);
                else if (text_speak.equals(words[3])||text_speak.equals(words[4])||text_speak.equals(words[5]))
@@ -282,7 +263,6 @@ public class YyDemo extends Activity  implements View.OnClickListener{
 
     private void printResult(RecognizerResult results) {
 
-        //parseIatResult的使用
         String text = JsonParser.parseIatResult(results.getResultString());
         String sn = null;
         // 读取json结果中的sn字段

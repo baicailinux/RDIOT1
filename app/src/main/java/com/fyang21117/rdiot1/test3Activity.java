@@ -74,7 +74,9 @@ import static com.fyang21117.rdiot1.iflytek.speech.setting.UrlSettings.PREFER_NA
             edit_text.setText(buf);
             requestPermissions();
             mToast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
-            //mscInit(null);//采用sdk默认url
+
+            // 采用sdk默认url
+            //mscInit(null);
             test3Activity.SimpleAdapter listitemAdapter = new test3Activity.SimpleAdapter();
             ((ListView) findViewById(R.id.listview_main)).setAdapter(listitemAdapter);
         }

@@ -17,10 +17,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.fyang21117.rdiot1.R;
-import com.fyang21117.rdiot1.test2Activity;
-import com.fyang21117.rdiot1.testActivity;
 import com.iflytek.cloud.ErrorCode;
 import com.iflytek.cloud.InitListener;
 import com.iflytek.cloud.LexiconListener;

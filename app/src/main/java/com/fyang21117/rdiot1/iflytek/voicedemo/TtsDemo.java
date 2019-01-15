@@ -62,7 +62,7 @@ public class TtsDemo extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.ttsdemo);
-		//texts是文本源
+
 		texts = getResources().getString(R.string.text_tts_source);
 		initLayout();
 
@@ -91,7 +91,6 @@ public class TtsDemo extends Activity implements OnClickListener {
 		
 		mRadioGroup=( findViewById(R.id.tts_rediogroup));
 		mRadioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
 				switch (checkedId) {
@@ -101,7 +100,6 @@ public class TtsDemo extends Activity implements OnClickListener {
 				default:
 					break;
 				}
-
 			}
 		} );
 	}	

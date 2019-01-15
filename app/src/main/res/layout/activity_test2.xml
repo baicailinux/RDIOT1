@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_alignParentTop="true"
-        android:layout_above="@id/btn_yes"
+        android:layout_above="@id/btn_all"
         android:background="#F5F5F5">
 
         <LinearLayout
@@ -25,7 +25,7 @@
             android:background="#F5F5F5">
 
             <LinearLayout
-                android:id="@+id/ll_vip_num_container"
+                android:id="@+id/prod_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -33,7 +33,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/ll_add_vip_num"
+                android:id="@+id/Add_prod_num"
                 android:layout_width="394dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
@@ -59,7 +59,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/btn_yes"
+        android:id="@+id/btn_all"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/colorPrimary"

@@ -32,19 +32,13 @@ public class testActivity extends AppCompatActivity {
         context.startActivity(intent);
     }
 
-    public TextView testText;
-    public String cp1="第一个产品";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_test);
         ActionBar actionBar = getSupportActionBar();
         if(actionBar!=null)
             actionBar.setDisplayHomeAsUpEnabled(true);
-        testText= findViewById(R.id.testview);
-        testText.setText(cp1);
-
 
         //////////////////图表选择//////////////////////////
         ListView mListView = new ListView(this);
@@ -64,7 +58,6 @@ public class testActivity extends AppCompatActivity {
         setTitle("选择显示图表类型");
         //设置页面横屏
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-
 
         OnItemClickListener listener = new OnItemClickListener() {
             @Override

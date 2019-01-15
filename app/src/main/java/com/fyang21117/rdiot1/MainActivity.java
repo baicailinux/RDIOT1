@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(actionBar!=null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
            // actionBar.setSubtitle("@string/app_name");
-            actionBar.setTitle("瑞德智能");
+            actionBar.setTitle("主页");
         }
         Button CP1 = findViewById(R.id.cp1);
         Button CP2 = findViewById(R.id.cp2);

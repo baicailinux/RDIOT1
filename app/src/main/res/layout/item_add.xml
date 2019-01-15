@@ -13,7 +13,7 @@
     <!--加上以上两个属性防止刚进入Activity时EditText抢占焦点-->
 
     <TextView
-        android:id="@+id/tv_index"
+        android:id="@+id/prod_index"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="12dp"
@@ -23,7 +23,7 @@
 
 
        <Button
-            android:id="@+id/et_vip_number"
+            android:id="@+id/product"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -33,7 +33,7 @@
 
     <!--给ImageView设置padding效果不明显，所有加上一个布局以扩大点击范围-->
     <LinearLayout
-        android:id="@+id/ll_delete"
+        android:id="@+id/prod_delete"
         android:layout_width="60dp"
         android:layout_height="match_parent"
         android:background="@color/white"

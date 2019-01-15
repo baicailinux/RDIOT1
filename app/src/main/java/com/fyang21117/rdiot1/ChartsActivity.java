@@ -21,12 +21,6 @@ import com.fyang21117.rdiot1.view.DemoView;
 import com.fyang21117.rdiot1.view.LineChart01View;
 import com.fyang21117.rdiot1.view.SplineChart03View;
 
-/*
- * @ClassName ChartsActivity
- * @Description  展示各类图表
- */
-
-
 /**
  * 关于整个图表缩放的说明 :
  * 	Demo中提供了两种缩放模式:
@@ -58,12 +52,7 @@ import com.fyang21117.rdiot1.view.SplineChart03View;
  *  然后用户可以通过平移图表区的方式来展示未显示出来的数据. 
  *  注意，此方式性能会有些损失，超大量的就不用尝试这种方式了， 
  *  对于这种超大量的可以通过ScrollView控件方式来处理,具体可参考"左右滑动折线图"的例子。
- *  
- *  
- *  如还有其它问题,可访问:
- *    http://blog.csdn.net/xcl168/article/details/42318669
- *  有一份简单的教程与常见问题解答。
- *    也可加群直接问.
+ *
  *  
  * @author XCL
  *

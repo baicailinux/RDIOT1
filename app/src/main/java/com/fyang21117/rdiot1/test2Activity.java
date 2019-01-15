@@ -28,9 +28,9 @@ public class test2Activity extends AppCompatActivity implements View.OnClickList
     }
 
     private ScrollView scrollView;
-    private LinearLayout llVipNumContainer;
-    private LinearLayout llAddVipNum;
-    private Button btnYes;
+    private LinearLayout ProductsContainer;
+    private LinearLayout ProductNum;
+    private Button btnAll;
 
     String cpname[]=new String[]{"空气净化器","智能风扇","智能马桶","智能电饭煲"};
     int j=0;
@@ -43,6 +43,7 @@ public class test2Activity extends AppCompatActivity implements View.OnClickList
         if(actionBar!=null)
             actionBar.setDisplayHomeAsUpEnabled(true);
 
+        setTitle("设备管理");
         initView();
         setListeners();
     }
@@ -62,7 +63,7 @@ public class test2Activity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_yes://点击添加按钮就动态添加Item
+            case R.id.btn_all://点击添加按钮就动态添加Item
                 Toast.makeText(this,"设备数据上传中，请稍后！",Toast.LENGTH_SHORT).show();
                  /* List<String> list = getDataList();
                 if(list.size() <= 0)
@@ -80,9 +81,9 @@ public class test2Activity extends AppCompatActivity implements View.OnClickList
     }
     private void initView(){
         scrollView = findViewById(R.id.scroll_view);
-        llVipNumContainer = findViewById(R.id.ll_vip_num_container);
-        llAddVipNum = findViewById(R.id.ll_add_vip_num);
-        btnYes = findViewById(R.id.btn_yes);
+        ProductsContainer = findViewById(R.id.prod_container);
+        ProductNum = findViewById(R.id.Add_prod_num);
+        btnAll = findViewById(R.id.btn_all);
 
         //TextView et_vip_number =  findViewById(R.id.et_vip_number);
         //et_vip_number.setText(cpname[2]);
@@ -93,13 +94,13 @@ public class test2Activity extends AppCompatActivity implements View.OnClickList
     }
 
     private void setListeners(){
-        llAddVipNum.setOnClickListener(new View.OnClickListener() {
+        ProductNum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 addViewItem();
             }
         });
-        btnYes.setOnClickListener(this);
+        btnAll.setOnClickListener(this);
     }
 
     /**
@@ -107,8 +108,8 @@ public class test2Activity extends AppCompatActivity implements View.OnClickList
      */
 
     private void addViewItem(){
-        View viewItem = LayoutInflater.from(this).inflate(R.layout.item_add, llVipNumContainer,false);
-        llVipNumContainer.addView(viewItem);
+        View viewItem = LayoutInflater.from(this).inflate(R.layout.item_add, ProductsContainer,false);
+        ProductsContainer.addView(viewItem);
         sortViewItem();
         //添加并且排序之后将布局滚动到底部，方便用户继续添加
         scrollView.post(new Runnable() {
@@ -123,15 +124,15 @@ public class test2Activity extends AppCompatActivity implements View.OnClickList
      * 该方法主要用于排序（每个item中的序号），主要针对从中间删除item的情况
      */
     private void sortViewItem(){
-        for(int i = 0; i < llVipNumContainer.getChildCount(); i++){
-            final View viewItem = llVipNumContainer.getChildAt(i);
-            TextView tvIndex = viewItem.findViewById(R.id.tv_index);
-            tvIndex.setText((i+1) + "");
-            LinearLayout llDelete =  viewItem.findViewById(R.id.ll_delete);
-            llDelete.setOnClickListener(new View.OnClickListener() {
+        for(int i = 0; i < ProductsContainer.getChildCount(); i++){
+            final View viewItem = ProductsContainer.getChildAt(i);
+            TextView prodIndex = viewItem.findViewById(R.id.prod_index);
+            prodIndex.setText((i+1) + "");
+            LinearLayout prodDelete =  viewItem.findViewById(R.id.prod_delete);
+            prodDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    llVipNumContainer.removeView(viewItem);
+                    ProductsContainer.removeView(viewItem);
                     sortViewItem();
                 }
             });
@@ -140,13 +141,13 @@ public class test2Activity extends AppCompatActivity implements View.OnClickList
 
     private List<String> getDataList() {
         List<String> result = new ArrayList<>();
-        for (int i = 0; i < llVipNumContainer.getChildCount(); i++) {
-            View itemView = llVipNumContainer.getChildAt(i);
-            EditText et =  itemView.findViewById(R.id.et_vip_number);
-            if (et != null) {
-                String vipNum = et.getText().toString().trim();
-                if (!TextUtils.isEmpty(vipNum)) {
-                    result.add(vipNum);
+        for (int i = 0; i < ProductsContainer.getChildCount(); i++) {
+            View itemView = ProductsContainer.getChildAt(i);
+            EditText product =  itemView.findViewById(R.id.product);
+            if (product != null) {
+                String productNum = product.getText().toString().trim();
+                if (!TextUtils.isEmpty(productNum)) {
+                    result.add(productNum);
                 }
             }
         }

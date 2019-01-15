@@ -57,6 +57,7 @@ public class test4Activity extends AppCompatActivity implements View.OnClickList
         ActionBar actionBar = getSupportActionBar();
         if(actionBar!=null)
             actionBar.setDisplayHomeAsUpEnabled(true);
+        setTitle("Handler");
 
         test4Text= findViewById(R.id.test4view);
         test4Text.setText(buffer[0]);

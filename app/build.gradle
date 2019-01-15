@@ -19,19 +19,17 @@ android {
         }
     }
 
-
-
 //在layout文件夹下建立子文件夹
-sourceSets {
-    main{
+    sourceSets {
+        main {
 
-        res.srcDirs = [
-                'src/main/res/layout/voicedemo',
-                'src/main/res/layout',
-                'src/main/res'
-        ]
+            res.srcDirs = [
+                    'src/main/res/layout/voicedemo',
+                    'src/main/res/layout',
+                    'src/main/res'
+            ]
+        }
     }
-}
 
 }
 

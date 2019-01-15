@@ -1,4 +1,4 @@
-package com.fyang21117.rdiot1;
+package com.fyang21117.rdiot1.second;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -9,6 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.fyang21117.rdiot1.FingerprintUtil;
+import com.fyang21117.rdiot1.KeyguardLockScreenManager;
+import com.fyang21117.rdiot1.MainActivity;
+import com.fyang21117.rdiot1.R;
 import com.fyang21117.rdiot1.core.FingerprintCore;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -22,6 +26,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        setTitle("应用锁");
 
         initFingerprintCore();
         Button psw_login = findViewById(R.id.psw_login);
@@ -43,7 +48,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 enterSysFingerprintSettingPage();
                 break;
             case R.id.psw_login:
-               MainActivity.actionStart(this);
+              unlockActivity.actionStart(this);
                 break;
 
         }
