@@ -9,6 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import static com.fyang21117.rdiot1.second.LoginActivity.unlocked;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     public static void actionStart(Context context) {
@@ -68,7 +71,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (item.getItemId())
         {
             case android.R.id.home: {
-                finish();
+                if(unlocked)
+                    Toast.makeText(this,"主页完善中",Toast.LENGTH_SHORT).show();
+
+                //返回上个活动：解锁界面
+                //finish();
             }break;
 
             case R.id.add_item: {

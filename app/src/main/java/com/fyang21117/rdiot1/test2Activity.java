@@ -52,7 +52,7 @@ public class test2Activity extends AppCompatActivity implements View.OnClickList
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId())
         {
-            case R.id.home: {
+            case android.R.id.home: {
                 finish();
             }break;
             default :break;
@@ -103,10 +103,7 @@ public class test2Activity extends AppCompatActivity implements View.OnClickList
         btnAll.setOnClickListener(this);
     }
 
-    /**
-     * 添加item
-     */
-
+    /*** 添加item*/
     private void addViewItem(){
         View viewItem = LayoutInflater.from(this).inflate(R.layout.item_add, ProductsContainer,false);
         ProductsContainer.addView(viewItem);
@@ -120,9 +117,7 @@ public class test2Activity extends AppCompatActivity implements View.OnClickList
         });
     }
 
-    /**
-     * 该方法主要用于排序（每个item中的序号），主要针对从中间删除item的情况
-     */
+    /*** 该方法主要用于排序（每个item中的序号），主要针对从中间删除item的情况*/
     private void sortViewItem(){
         for(int i = 0; i < ProductsContainer.getChildCount(); i++){
             final View viewItem = ProductsContainer.getChildAt(i);

@@ -47,7 +47,6 @@
         <activity android:name=".test2Activity" />
         <activity android:name=".test4Activity" />
         <activity android:name=".ChartsActivity" />
-        <activity android:name=".second.unlockActivity"/>
 
         <activity
             android:name=".test3Activity"

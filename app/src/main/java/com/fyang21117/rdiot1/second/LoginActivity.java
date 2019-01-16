@@ -7,8 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
-
 import com.fyang21117.rdiot1.FingerprintUtil;
 import com.fyang21117.rdiot1.KeyguardLockScreenManager;
 import com.fyang21117.rdiot1.MainActivity;
@@ -21,7 +21,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private KeyguardLockScreenManager mKeyguardLockScreenManager;//指纹管理
     private Toast mToast;
     private Handler mHandler = new Handler(Looper.getMainLooper());//主线程
-
+    private EditText editText;
+    private String string;
+    public static boolean unlocked = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,11 +31,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setTitle("应用锁");
 
         initFingerprintCore();
+
         Button psw_login = findViewById(R.id.psw_login);
-        Button add_fingerprint = findViewById(R.id.add_fingerprint);
         Button use_fingerprint = findViewById(R.id.use_fingerprint);
+        Button test = findViewById(R.id.test);
+        editText = findViewById(R.id.unlock_num);
+        test.setOnClickListener(this);
         psw_login.setOnClickListener(this);
-        add_fingerprint.setOnClickListener(this);
         use_fingerprint.setOnClickListener(this);
     }
 
@@ -41,30 +45,50 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         final int viewId = v.getId();
         switch (viewId) {
-            case R.id.use_fingerprint:
-                startFingerprintRecognition();
+            case R.id.test:
+                MainActivity.actionStart(this);
+                finish();
+                break;
+           case R.id.use_fingerprint:
+               //调用非活动布局的控件
+               View view= getLayoutInflater().inflate(R.layout.fingerprint_dialog, null);
+               final MyDialog mMyDialog= new MyDialog(this, 0, 0, view, R.style.DialogTheme);
+               Button cancel_fingerprint = view.findViewById(R.id.cancel_unlock);
+               mMyDialog.setCancelable(true);
+               mMyDialog.show();
+               startFingerprintRecognition();
+               cancel_fingerprint.setOnClickListener(new View.OnClickListener() {
+                   @Override
+                   public void onClick(View v) {
+                       mMyDialog.dismiss();
+                   }
+               });
                break;
-            case R.id.add_fingerprint:
-                enterSysFingerprintSettingPage();
-                break;
             case R.id.psw_login:
-              unlockActivity.actionStart(this);
-                break;
-
+                string =editText.getText().toString();
+                if(string.equals("1028")) {
+                    unlocked = true;
+                    MainActivity.actionStart(this);
+                    finish();
+                }
+                else {
+                    Toast.makeText(this, "Unlocking failed!Please input again!", Toast.LENGTH_SHORT).show();
+                }
+                 break;
+           default:break;
         }
      }
-
+    /*** 指纹识别初始化*/
     private void initFingerprintCore() {
         mFingerprintCore = new FingerprintCore(this);
         mFingerprintCore.setFingerprintManager(mResultListener);
         mKeyguardLockScreenManager = new KeyguardLockScreenManager(this);
     }
 
-    //进入系统设置指纹界面
+    /*** 进入系统设置指纹界面*/
     private void enterSysFingerprintSettingPage() {
         FingerprintUtil.openFingerPrintSettingPage(this);
     }
-
     private void startFingerprintRecognitionUnlockScreen() {
         if (mKeyguardLockScreenManager == null) {
             return;
@@ -97,6 +121,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void IntoActivity() {
+        unlocked = true;
         MainActivity.actionStart(this);//识别成功
     }
 
@@ -107,20 +132,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             toastTipMsg(R.string.fingerprint_recognition_success);
             IntoActivity();
         }
-
         @Override
         public void onAuthenticateFailed(int helpId) {
             toastTipMsg(R.string.fingerprint_recognition_failed);
         }
-
         @Override
         public void onAuthenticateError(int errMsgId) {
             toastTipMsg(R.string.fingerprint_recognition_error);
         }
-
         @Override
         public void onStartAuthenticateResult(boolean isSuccess) {
-
         }
     };
 

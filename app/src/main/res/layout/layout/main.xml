@@ -5,7 +5,7 @@
     android:background="@drawable/layout_backgroud"
     android:orientation="vertical" >
 
-    <include layout="@layout/title" />
+    <!--<include layout="@layout/title" />-->
 
     <TextView
         android:id="@+id/edit_text"

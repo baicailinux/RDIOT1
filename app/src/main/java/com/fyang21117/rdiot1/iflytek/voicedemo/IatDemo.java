@@ -325,7 +325,6 @@ public class IatDemo extends Activity implements OnClickListener {
 			}else{
 				printResult(results);
 			}
-			
 		}
 
 		/**
@@ -338,7 +337,6 @@ public class IatDemo extends Activity implements OnClickListener {
 				showTip(error.getPlainDescription(true));
 			}
 		}
-
 	};
 
 	/**

@@ -2,30 +2,25 @@ package com.fyang21117.rdiot1;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.fyang21117.rdiot1.iflytek.voicedemo.AsrDemo;
 import com.fyang21117.rdiot1.iflytek.voicedemo.IatDemo;
 import com.fyang21117.rdiot1.iflytek.voicedemo.IseDemo;
@@ -39,7 +34,7 @@ import com.iflytek.sunflower.FlowerCollector;
 
 import static com.fyang21117.rdiot1.iflytek.speech.setting.UrlSettings.PREFER_NAME;
 
-    public class test3Activity extends Activity implements View.OnClickListener {
+    public class test3Activity extends AppCompatActivity implements View.OnClickListener {
         public static void actionStart(Context context) {
             Intent intent = new Intent(context, test3Activity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
@@ -54,19 +49,19 @@ import static com.fyang21117.rdiot1.iflytek.speech.setting.UrlSettings.PREFER_NA
         @SuppressLint("ShowToast")
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            requestWindowFeature(Window.FEATURE_NO_TITLE);
-            setContentView(R.layout.main);
+            //requestWindowFeature(Window.FEATURE_NO_TITLE);
+            setContentView(R.layout.activity_test3);
 
             // 将“12345678”替换成您申请的APPID，申请地址：http://www.xfyun.cn
             // 请勿在“=”与appid之间添加任何空字符或者转义符
             SpeechUtility.createUtility(this, SpeechConstant.APPID +"=5c0881d0");
 
-
-/*            ActionBar actionBar = getActionBar();
+            android.support.v7.app.ActionBar actionBar = getSupportActionBar();
             if(actionBar!=null)
-                actionBar.setDisplayHomeAsUpEnabled(true);*/
+                actionBar.setDisplayHomeAsUpEnabled(true);
+            setTitle("讯飞语音示例");
 
-            edit_text = (TextView) findViewById(R.id.edit_text);
+            edit_text =  findViewById(R.id.edit_text);
             StringBuffer buf = new StringBuffer();
             buf.append("当前APPID为：");
             buf.append(getString(R.string.app_id)+"\n");
@@ -81,7 +76,7 @@ import static com.fyang21117.rdiot1.iflytek.speech.setting.UrlSettings.PREFER_NA
             ((ListView) findViewById(R.id.listview_main)).setAdapter(listitemAdapter);
         }
 
-/*        @Override
+        @Override
         public boolean onOptionsItemSelected(MenuItem item) {
             switch (item.getItemId()) {
                 case android.R.id.home: {
@@ -89,7 +84,7 @@ import static com.fyang21117.rdiot1.iflytek.speech.setting.UrlSettings.PREFER_NA
                 }break;
                 default :break;
             }return super.onOptionsItemSelected(item);
-        }*/
+        }
         @Override
         public void onClick(View view) {
             int tag = Integer.parseInt(view.getTag().toString());
@@ -116,24 +111,24 @@ import static com.fyang21117.rdiot1.iflytek.speech.setting.UrlSettings.PREFER_NA
                     intent = new Intent(test3Activity.this, IseDemo.class);
                     break;
                 case 5:
-                    // 唤醒
-                    showTip("请登录：http://www.xfyun.cn/ 下载体验吧！");
-                    break;
-                case 6:
                     // 声纹
                     intent = new Intent(test3Activity.this, VocalVerifyDemo.class);
                     break;
-                case 7:
+                case 6:
                     intent = new Intent(test3Activity.this,OnlineFaceDemo.class);
                     break;
-		/*case 8:
+		/*
+		    case 5:
+            // 唤醒
+            showTip("请登录：http://www.xfyun.cn/ 下载体验吧！");
+             break;
+		case 8:
 			Intent init = new Intent(test3Activity.this, UrlSettings.class);
 			startActivityForResult(init, URL_REQUEST_CODE);
 			break;*/
                 default:
                     break;
             }
-
             if (intent != null) {
                 startActivity(intent);
             }
@@ -141,7 +136,7 @@ import static com.fyang21117.rdiot1.iflytek.speech.setting.UrlSettings.PREFER_NA
 
         // Menu 列表
         String items[] = { "立刻体验语音听写", "立刻体验语法识别", "立刻体验语音助手", "立刻体验语音合成",
-                "立刻体验语音评测", "立刻体验语音唤醒", "立刻体验声纹密码","立刻体验人脸识别"/*,"重置域名"*/ };
+                "立刻体验语音评测",/* "立刻体验语音唤醒",*/ "立刻体验声纹密码","立刻体验人脸识别"/*,"重置域名"*/ };
 
         private class SimpleAdapter extends BaseAdapter {
             public View getView(int position, View convertView, ViewGroup parent) {
@@ -150,12 +145,10 @@ import static com.fyang21117.rdiot1.iflytek.speech.setting.UrlSettings.PREFER_NA
                     View mView = factory.inflate(R.layout.list_items, null);
                     convertView = mView;
                 }
-
-                Button btn = (Button) convertView.findViewById(R.id.btn);
+                Button btn = convertView.findViewById(R.id.btn);
                 btn.setOnClickListener(test3Activity.this);
                 btn.setTag(position);
                 btn.setText(items[position]);
-
                 return convertView;
             }
 
@@ -202,11 +195,11 @@ import static com.fyang21117.rdiot1.iflytek.speech.setting.UrlSettings.PREFER_NA
                     int permission = ActivityCompat.checkSelfPermission(this,
                             Manifest.permission.WRITE_EXTERNAL_STORAGE);
                     if(permission!= PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions(this,new String[]
-                                {       Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                                        Manifest.permission.LOCATION_HARDWARE,Manifest.permission.READ_PHONE_STATE,
-                                        Manifest.permission.WRITE_SETTINGS,Manifest.permission.READ_EXTERNAL_STORAGE,
-                                        Manifest.permission.RECORD_AUDIO,Manifest.permission.READ_CONTACTS},0x0010);
+                        ActivityCompat.requestPermissions(this,new String[]{
+                           Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                           Manifest.permission.LOCATION_HARDWARE,Manifest.permission.READ_PHONE_STATE,
+                           Manifest.permission.WRITE_SETTINGS,Manifest.permission.READ_EXTERNAL_STORAGE,
+                           Manifest.permission.RECORD_AUDIO,Manifest.permission.READ_CONTACTS},0x0010);
                     }
 
                     if(permission != PackageManager.PERMISSION_GRANTED) {

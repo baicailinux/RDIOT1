@@ -23,9 +23,14 @@ public class test4Activity extends AppCompatActivity implements View.OnClickList
     }
 
     static TextView test4Text;
-    public  static String buffer[]=new String[]{"古诗词赏析","床前明月光","疑是地上霜","举头望明月","低头思故乡"};
+    static int buffer[]=new int[]{
+            R.string.example_explain,
+            R.string.text_tts_source,
+            R.string.text_tts_source_en,
+            R.string.text_understand_hint,
+            R.string.text_RDIOT_hint};
     public  static final  int UPDATE = 1;
-    public static  int i=1;
+    public static  int i=0;
 
     //将 Handler 声明为静态内部类。并持有外部类的弱引用
     private static class MyHandler extends Handler{
@@ -39,10 +44,10 @@ public class test4Activity extends AppCompatActivity implements View.OnClickList
             if (activity!= null)
                 switch (msg.what){
                 case UPDATE:
-                        test4Text.setText(buffer[i]);
-                        i++;
-                        if(i==5)
-                            i=1;
+                        //test4Text.setText(int resId);
+                        test4Text.setText(buffer[i++]);
+                        if(i>=5)
+                            i=0;
                     break;
                 default:break;
             }
@@ -57,7 +62,7 @@ public class test4Activity extends AppCompatActivity implements View.OnClickList
         ActionBar actionBar = getSupportActionBar();
         if(actionBar!=null)
             actionBar.setDisplayHomeAsUpEnabled(true);
-        setTitle("Handler");
+        setTitle("handler");
 
         test4Text= findViewById(R.id.test4view);
         test4Text.setText(buffer[0]);
