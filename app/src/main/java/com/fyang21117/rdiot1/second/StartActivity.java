@@ -1,6 +1,7 @@
 package com.fyang21117.rdiot1.second;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
@@ -8,13 +9,18 @@ import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.fyang21117.rdiot1.MainActivity;
 import com.fyang21117.rdiot1.R;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class StartActivity extends AppCompatActivity{
 
     private ImageView welcomeImg=null;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +34,24 @@ public class StartActivity extends AppCompatActivity{
 
         welcomeImg = findViewById(R.id.logo_start);
         AlphaAnimation alphaAnimation = new AlphaAnimation(0.3f,1.0f);
-        alphaAnimation.setDuration(3000);
+        alphaAnimation.setDuration(4000);
         welcomeImg.startAnimation(alphaAnimation);
         alphaAnimation.setAnimationListener(new AnimationImpl());
+
+        progressBar = findViewById(R.id.progress_bar);
+
+
+       final Handler mHandler = new Handler();
+         Runnable r = new Runnable() {
+        @Override
+        public void run() {
+            int progress = progressBar.getProgress();
+            progress = progress +25;
+            progressBar.setProgress(progress);
+            mHandler.postDelayed(this, 1000);
+          }
+       };//每隔1s循环执行run方法
+        mHandler.postDelayed(r, 1000);
     }
 
     public class AnimationImpl implements Animation.AnimationListener {

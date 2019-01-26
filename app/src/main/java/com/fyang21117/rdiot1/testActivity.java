@@ -40,7 +40,7 @@ public class testActivity extends AppCompatActivity {
         if(actionBar!=null)
             actionBar.setDisplayHomeAsUpEnabled(true);
 
-        //////////////////图表选择//////////////////////////
+        /* 图表选择*/
         ListView mListView = new ListView(this);
 
         SimpleAdapter adapter = new SimpleAdapter(this, getData(),

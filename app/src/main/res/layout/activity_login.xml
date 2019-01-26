@@ -28,6 +28,7 @@
             android:gravity="center_horizontal"
             android:inputType="number"
             android:hint="input your unlocking nums:"
+            android:maxLines="2"
             android:textAllCaps="false"/>
         <Button
             android:id="@+id/psw_login"

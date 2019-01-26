@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ActionBar actionBar = getSupportActionBar();
         if(actionBar!=null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-           // actionBar.setSubtitle("@string/app_name");
-            actionBar.setTitle("主页");
+            actionBar.setSubtitle("疯狂打码中");
+            actionBar.setTitle("个人主页");
         }
         Button CP1 = findViewById(R.id.cp1);
         Button CP2 = findViewById(R.id.cp2);
@@ -71,11 +71,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (item.getItemId())
         {
             case android.R.id.home: {
-                if(unlocked)
+               // if(unlocked)
                     Toast.makeText(this,"主页完善中",Toast.LENGTH_SHORT).show();
-
-                //返回上个活动：解锁界面
-                //finish();
+                //finish();//返回上个活动：解锁界面
             }break;
 
             case R.id.add_item: {

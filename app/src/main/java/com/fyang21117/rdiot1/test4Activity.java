@@ -30,7 +30,7 @@ public class test4Activity extends AppCompatActivity implements View.OnClickList
             R.string.text_understand_hint,
             R.string.text_RDIOT_hint};
     public  static final  int UPDATE = 1;
-    public static  int i=0;
+    public static  int i=1;
 
     //将 Handler 声明为静态内部类。并持有外部类的弱引用
     private static class MyHandler extends Handler{

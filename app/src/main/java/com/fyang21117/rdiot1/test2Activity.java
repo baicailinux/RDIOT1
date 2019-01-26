@@ -15,7 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +32,6 @@ public class test2Activity extends AppCompatActivity implements View.OnClickList
     private Button btnAll;
 
     String cpname[]=new String[]{"空气净化器","智能风扇","智能马桶","智能电饭煲"};
-    int j=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
